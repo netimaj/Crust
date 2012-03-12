@@ -1,5 +1,5 @@
 Crust is a Php framework using Doctrine ORM and Smarty Template Engine.
-It is similar to Ruby on Rails in that it employs a MVC approach to web development as it significantly enables agile development.
+It is similar to Ruby on Rails in that it takes a MVC approach to web development as it significantly enables agile development.
 
 To configure crust framework:
 See app/config.php
