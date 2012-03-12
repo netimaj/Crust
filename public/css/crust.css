@@ -1,0 +1,29 @@
+/* You can delete this file */
+body
+{
+  background-color:#fff;
+  color:#111;
+}
+
+#header { width:600px;margin-left:auto;margin-right:auto;margin-top:30px;}
+#header img{float:left;}
+#header .title { font-size:36pt;color:#9B3200;padding-top:25px;font-family:'Times New Roman';}
+
+#content { width:800px;margin-left:auto;margin-right:auto;font-family:'Arial';line-height:20px;}
+#content ul li { height:25px;}
+
+small { font-size:11px;}
+
+a
+{
+  color:#333;
+  font-family:Arial;
+  text-decoration:none;
+}
+
+a:hover
+{
+  text-decoration:underline;
+}
+
+
