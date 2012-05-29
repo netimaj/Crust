@@ -3,9 +3,29 @@
 * Crust Framework Router
 * 
 * @author Ahmet Özışık
-* @version 1.1
+* @version 1.2
+ * 
+ * 
+ * --CHANGELOG
+ * 		Mapping özelliği
 */
 
+
+$routes_root_controller = 'home';
+$routes_root_action     = 'index';
+
+/**
+ */
+$mapping = array();
+//
+//$mapping['cars'] = 'show_content/cars';
+//
+
+
+/**
+ * DO NOT TOUCH BELOW
+ * 
+ */
 function routing_sanitize($param)
 {
   return strip_tags($param);
@@ -20,8 +40,31 @@ $routing_request_array = explode('/', $routing_request_uri);
 // Sanitize request
 $routing_request_array = array_map('routing_sanitize', $routing_request_array);
 
-$routes_root_controller = 'home';
-$routes_root_action     = 'index';
+//MAPPING
+if(count($mapping) > 0)
+{
+	
+	foreach($mapping as $map => $connect_to)
+	{
+		if($routing_request_array[0] == $map)
+		{
+			$temporary = array();
+			
+			$temporary = explode('/', $connect_to);
+			// Sanitize request
+			$temporary = array_map('routing_sanitize', $temporary);			
+		}
+		else {
+			continue;
+		}
+	}
+	
+	if(isset($temporary) and is_array($temporary) and count($temporary) > 0)
+	{
+		unset($routing_request_array[0]);
+		$routing_request_array = array_merge($temporary, $routing_request_array);
+	}
+}
 
 $routes_controller = (!empty($routing_request_array[0])) ? $routing_request_array[0] : $routes_root_controller;
 $routes_action     = (!empty($routing_request_array[1])) ? $routing_request_array[1] : $routes_root_action;

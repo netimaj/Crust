@@ -3,6 +3,4 @@ You have successfully configured the Crust Framework.<br /> You are now seeing t
 <ul>
   <li>See <b>app/config.php</b> for database configuration</li>
   <li>See <b>app/bootstrap.php</b> for database configuration</li>
-  <li>See <b>app/bootstrap.php</b> for multi-language support</li>
-  <li>See <b>libs/languages/en.language.php</b> for multi-language support</li>
 </ul>

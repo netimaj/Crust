@@ -2,6 +2,7 @@
   
 function _404()
 {
+	define('404', true);
   require ROOT.'public/404.php'; 
   exit;
 }

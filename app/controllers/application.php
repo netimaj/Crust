@@ -41,7 +41,10 @@ abstract class ApplicationController extends t_smarty
 
     public function __destruct()
     {
-        echo parent::render($this->controller, $this->action);
+    	if(defined('404'))
+				header('HTTP/1.0 404 Not Found');
+			    	
+      echo parent::render($this->controller, $this->action);
     }
 
     /**
