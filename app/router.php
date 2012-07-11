@@ -7,7 +7,7 @@
  * 
  * 
  * --CHANGELOG
- * 		Mapping özelliği
+ * 		Mapping feature
 */
 
 

@@ -1,15 +1,22 @@
 <?php
 /**
- * HELPERS
+ * ApplicationHelper is the helper accessible from app/controllers/application.php via $this->own_helper
+ * It can also be called from any controller via $this->own_helper
  * 
- * Neden kullanalım ?
- * - Normalde Model dosyaları içinde yapılması gereken fakat
- * - DB ile pek de ilgisi olmayan işlemlerin controller içerisinde
- * - gereksiz kod karmaşası yaratması nedeniyle, helper dosyaları
- * - kullanılarak bu durum ortadan kaldırılacaktır
+ * So it's a global helper file.
  * 
  * 
- * HER CONTROLLER DOSYASI İÇİN BİR HELPER DOSYASI BULUNDURALIM
+ * Create helpers for a particular controller with the same name as the controller
+ * then reach the helper simply via $this->helper within that controller.
+ * 
+ * i.e profile.controller.php > profile.helper.php
+ * 
+ * 
+ * Also name the class after the controller
+ * i.e new ProfileController() > new ProfileHelper() 
+ * 
+ * In a helper, __construct function takes an instance parameter (the instance of the controller)
+ * Use this instance to access template functions and other properties of ApplicationController 
  * 
  * @author Ahmet Özışık
  */

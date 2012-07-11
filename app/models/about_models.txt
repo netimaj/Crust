@@ -1,0 +1,22 @@
+Model files represent database tables and since Crust employs Doctrine ORM to
+access DB, simply go under app/bootstrap.php and uncomment the block defining database connection
+and once you have done, you should see model files generated automatically under this folder.
+
+Do not forget to comment out the following line once you're done with creating models:
+	> Doctrine_Core::generateModelsFromDb(DIR_MODELS, array('Doctrine'), array('generateTableClasses' => true));
+	in app/bootstrap.php
+	
+
+Access model files freely from controllers as simple as
+	> $users = new Users();
+	for a table called Users.
+	
+Do not forget that doctrine remove any underscores from the table names and capitalize letters following them.
+For example
+	> profile_pictures would be renamed as ProfilePictures
+	
+Never forget to refer to that table as ProfilePictures as Doctrine ORM abstracts the database and employs the models it has
+and does not actually care about the real names you have in your MySQL panel.
+
+For further information about Doctrine visit:
+	> http://www.doctrine-project.org/projects/orm.html

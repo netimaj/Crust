@@ -4,5 +4,8 @@
 */
 class HomeController extends ApplicationController
 {
-	public function index(){}
+	public function index()
+	{
+		$this->assign('title', 'Hello World!');
+	}
 }

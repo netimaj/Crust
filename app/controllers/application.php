@@ -43,12 +43,16 @@ abstract class ApplicationController extends t_smarty
     {
     	if(defined('404'))
 				header('HTTP/1.0 404 Not Found');
+			
+			// no output if requested
+			if(defined('NO_TEMPLATE_OUTPUT'))
+				return;
 			    	
       echo parent::render($this->controller, $this->action);
     }
 
     /**
-    * Form işlemesini yapar
+    * Sends POST data to a model's function
     * 
     * @param mixed $model_name
     * @param mixed $function_name

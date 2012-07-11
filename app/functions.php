@@ -261,7 +261,7 @@ function dogru_oranti($a, $b, $c) {
 
 
 /**
- * Her gün yenilenen bir cache yaratır
+ * Reads or returns false a cache 
  */
 function daily_cache_exists($name)
 {
@@ -272,6 +272,9 @@ function daily_cache_exists($name)
    : false;
 }
 
+/*
+ * Creates a cache which is renewed every day
+ */
 function daily_cache_create($name, $content)
 {
   $filename = DIR_LOGS.$name.strtotime(date('d.m.Y')).'.log'; 
