@@ -10,16 +10,17 @@
  * 		Mapping feature
 */
 
-
 $routes_root_controller = 'home';
 $routes_root_action     = 'index';
 
 /**
+ * USING THE ARRAY BELOW YOU CAN REWRITE URLS
+ * $mapping['cars'] = 'show_content/cars';
+ * 
+ * Use the URL to be shown as the key and the url it should actually call as value 
  */
 $mapping = array();
-//
-//$mapping['cars'] = 'show_content/cars';
-//
+
 
 
 /**

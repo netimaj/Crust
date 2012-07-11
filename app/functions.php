@@ -15,6 +15,7 @@ function _debug($message, $param)
 
 function _500()
 {
+	define('500', true);
   require ROOT.'public/500.php';
   exit;
 }
@@ -59,7 +60,7 @@ function call_controller($name, $action, $parameters)
 }
 
 /**
-* Mail gönderir
+* Obviously sends mail
 * 
 * @param mixed $to
 * @param mixed $subject
@@ -117,19 +118,6 @@ function send_mail($to, $subject, $template_vars=array(), $template)
 }
 
 /**
-* Sends a portal message to a user
-* 
-* @param mixed $receiver_id
-* @param mixed $subject
-* @param mixed $message
-*/
-function send_system_message($receiver_id, $subject, $message)
-{
-  $messages = new Messages();
-  $messages->send_message($receiver_id, '-1', array('subject'=>$subject,'message'=>$message));
-}
-
-/**
 * Giriş yapmış kullanıcıları reddet
 * 
 */
@@ -150,7 +138,7 @@ function deny_unlogged_users()
 }
 
 /**
-* Bir JSON dosyasını array olarak döndürür
+* Returns a json file as an array
 * 
 * @param mixed $file
 * @return mixed
@@ -163,24 +151,7 @@ function getJsonArray($file)
 }
 
 /**
-* Verilen ayar ismiyle veritabanından o ayarın değerini çeker
-* 
-* @param mixed $config_name
-*/
-function get_config($config_name)
-{
-  if(empty($config_name)) return false;
-  $config_name = strip_tags($config_name);
-  $config_name = addslashes($config_name);
-  
-  $settings = new Settings();
-  $value    = $settings->get_setting($config_name);
-  
-  return (!empty($value)) ? $value : false;
-}
-
-/**
-* Kafasından şifre üretir
+* Generates a random password
 * 
 * @param mixed $len
 */
@@ -192,8 +163,8 @@ function random_password($len = 6)
     return $r;
 }
 
-/** mysql timestamp döndrürür
-* 
+/** 
+* Returns valid timestamp for mySQL timestamp format
 * 
 */
 function timestamp($time=null)
@@ -202,7 +173,9 @@ function timestamp($time=null)
   return isset($time) ? date($format, $time) : date($format);
 }
 
-
+/**
+ * count words in a text
+ */
 function word_count($str)
 {
      $words = 0;
@@ -224,7 +197,9 @@ function word_count($str)
      return $words;
 }
 
-
+/**
+ * normalize strings for web addresses
+ */
 function slug($str)
 {
   $str = str_replace(array('ğ', 'Ğ', 'İ', 'ı', 'ü', 'Ü', 'ş', 'Ş', 'ö', 'Ö', 'ç', 'Ç'), array('g', 'g', 'i', 'i', 'u', 'u', 's', 's', 'o', 'o', 'c', 'c'), $str); 
@@ -235,6 +210,9 @@ function slug($str)
   return $str;
 }
 
+/**
+ * check if template exists
+ */
 function template_exists($name)
 {
   return (file_exists(VIEWS.$name)) ? true : false;
@@ -251,17 +229,19 @@ if(!function_exists('mb_ucwords'))
 
 
 /**
- * Bir doğru orantı denklemi çözer
+ * Returns a calculated ratio
  * a     b
  * c     d=return
+ * 
+ * if it's b out of a, what it would be out of c
  */
-function dogru_oranti($a, $b, $c) {
+function ratio($a, $b, $c) {
   return ($a == 0) ? 0 : ($b * $c) / $a;
 }
 
 
 /**
- * Reads or returns false a cache 
+ * Reads or returns false a cache
  */
 function daily_cache_exists($name)
 {
