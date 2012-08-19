@@ -20,7 +20,7 @@
 {img src="smarty.png" title="Smarty Template Engine"}
 {img src="jquery.png" title="jQuery JS Framework"}
 <br />
-<small>Crust Framework v1.0.0 is based on PHP, uses <i>Doctrine ORM</i>, <i>Smarty Template Engine and includes jQuery. <br />See documentation.pdf for further information, troubleshooting and questions.</i></small>
+<small>Crust Framework v{$version} is based on PHP, uses <i>Doctrine ORM</i>, <i>Smarty Template Engine and includes jQuery. <br />See documentation.pdf for further information, troubleshooting and questions.</i></small>
 </div>
 
 </body>

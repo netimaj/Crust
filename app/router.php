@@ -7,21 +7,18 @@
  * 
  * 
  * --CHANGELOG
- * 		Mapping feature
+ * 		Mapping özelliği
 */
+
 
 $routes_root_controller = 'home';
 $routes_root_action     = 'index';
 
 /**
- * USING THE ARRAY BELOW YOU CAN REWRITE URLS
- * $mapping['cars'] = 'show_content/cars';
- * 
- * Use the URL to be shown as the key and the url it should actually call as value 
+ * %c > Controller, gelen request içindeki varsayılan controller ile replace olur
  */
 $mapping = array();
-
-
+//
 
 /**
  * DO NOT TOUCH BELOW
@@ -36,6 +33,8 @@ $routing_request_uri = $_SERVER['REQUEST_URI'];
 // If there is any subfolder remove it
 if(SUB_FOLDER)
 $routing_request_uri = substr($routing_request_uri, strlen(SUB_FOLDER), strlen($routing_request_uri));
+// clear any query strings
+$routing_request_uri = str_replace('?'.$_SERVER['QUERY_STRING'], '', $routing_request_uri);
 // Explode the URL into an array
 $routing_request_array = explode('/', $routing_request_uri);
 // Sanitize request

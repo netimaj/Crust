@@ -22,6 +22,12 @@ function _500()
 
 function redirect_to($request, $to_referer=false)
 {
+	if(filter_var($request, FILTER_VALIDATE_URL))
+	{
+		header('Location: '.$request);
+		exit;
+	}
+	
   header(($to_referer) ? 'Location: '.$_SERVER['HTTP_REFERER'] : 'Location: '.URL.$request);
   exit;
 }

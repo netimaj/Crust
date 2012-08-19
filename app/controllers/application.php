@@ -14,11 +14,8 @@ abstract class ApplicationController extends t_smarty
     protected $action;
     protected $parameters;
 		protected $helper;
-    
     private $own_helper;
 		
-
-
     public function __construct($controller, $action, $parameters)
     {
         // Initialize smarty
@@ -87,5 +84,17 @@ abstract class ApplicationController extends t_smarty
             if($assign_success == true)
                 $this->assign('success', true);
     }
+		
+		
+		public function require_id_in_parameter($parameter_key=0, $not_numeric=false)
+		{
+			if(!isset($this->parameters[$parameter_key]) or empty($this->parameters[$parameter_key]))
+				redirect_to('home');
+			
+			if($not_numeric == false and !is_numeric($this->parameters[$parameter_key]))
+				redirect_to('home');
+			
+			return $this->parameters[$parameter_key];
+		}		
 }
 ?>

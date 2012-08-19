@@ -3,8 +3,8 @@
 * Crust Framework Config
 * 
 * @author Ahmet Özışık
-* @version 1.0.0
 */
+define('CRUST_VERSION', '0.9.1');
 define('IN_SCRIPT'   , true);                   
 define('SERVICE_MAIL', 'no-reply@example.com');
 
@@ -24,13 +24,13 @@ define('ENVIRONMENT', 'development');
 if(ENVIRONMENT == 'development')
 {
   define('SUB_FOLDER'     , '/framework/');
-  define('ROOT'           , 'D:/localhost/htdocs/framework/');
+  define('ROOT'           , $_SERVER['DOCUMENT_ROOT'].'/');
   define('URL'            , 'http://localhost/framework/');
   define('NOCACHE'        , true);      
   define('DB_DSN'         , 'mysql:dbname=framework;host=127.0.0.1');
   define('DB_USER'        , 'root');
   define('DB_PASSWORD'    , '');  
-  define('LOCAL_MAIL_DIR', 'C:/Users/pc/Desktop/inbox');
+  //define('LOCAL_MAIL_DIR', 'C:/Users/pc/Desktop/inbox');
 }
 elseif(ENVIRONMENT == 'local')
 {
@@ -62,6 +62,7 @@ define('VIEWS_LAYOUTS', VIEWS.'layouts/');
 define('FUNCTIONS' , ROOT.'app/functions.php');
 define('APPLICATION_CONTROLLER', ROOT.'app/controllers/application.php');
 
+define('DIR_HELPERS', ROOT.'app/helpers/');
 define('DIR_CONTROLLERS', ROOT.'app/controllers/');
 define('DIR_MODELS', ROOT.'app/models/');
 define('DIR_LIBS', ROOT.'libs/');

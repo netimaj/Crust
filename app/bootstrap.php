@@ -1,5 +1,7 @@
 <?php
 session_start();
+# session fixation precaution
+if(!isset($_SESSION) or empty($_SESSION)) session_regenerate_id();
 #
 if(!defined('ADMIN')) require dirname(__FILE__).'/config.php';
 #
@@ -15,6 +17,7 @@ spl_autoload_register(array('Doctrine_Core', 'modelsAutoload'));
 $manager = Doctrine_Manager::getInstance();
 $manager->setAttribute(Doctrine::ATTR_VALIDATE, Doctrine::VALIDATE_ALL);
 $manager->setAttribute(Doctrine_Core::ATTR_MODEL_LOADING, Doctrine_Core::MODEL_LOADING_CONSERVATIVE);
+$manager->setAttribute(Doctrine::ATTR_AUTO_ACCESSOR_OVERRIDE, true);
 
 $dbh       = new PDO(DB_DSN, DB_USER, DB_PASSWORD);
 $oDB       = Doctrine_Manager::connection($dbh);
