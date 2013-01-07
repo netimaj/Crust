@@ -14,7 +14,7 @@ abstract class ApplicationController extends t_smarty
     protected $action;
     protected $parameters;
 		protected $helper;
-    private $own_helper;
+    private   $own_helper;
 		
     public function __construct($controller, $action, $parameters)
     {
@@ -39,11 +39,21 @@ abstract class ApplicationController extends t_smarty
     public function __destruct()
     {
     	if(defined('404'))
+			{
 				header('HTTP/1.0 404 Not Found');
+				$this->controller = 'errors';
+				$this->action 		= '404_not_found';
+			}
+			else if(defined('500'))
+			{
+				header('HTTP/1.0 500 Internal Server Error');
+				$this->controller= 'errors';
+				$this->action = '500_server_error';
+			}
+				
 			
 			// no output if requested
-			if(defined('NO_TEMPLATE_OUTPUT'))
-				return;
+			if(defined('NO_TEMPLATE_OUTPUT')) return;
 			    	
       echo parent::render($this->controller, $this->action);
     }
