@@ -23,6 +23,16 @@
 
  class ApplicationHelper
  {
+ 	
+	public static function returnFieldNames()
+	{
+		return array
+			(
+			 'email' => 'email', 
+			 'password' => 'password',
+			 
+			);		
+	}
 
  }
 

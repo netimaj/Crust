@@ -4,7 +4,7 @@
 * 
 * @author Ahmet Özışık
 */
-define('CRUST_VERSION', '0.9.1');
+define('CRUST_VERSION', '0.9.2');
 define('IN_SCRIPT'   , true);                   
 define('SERVICE_MAIL', 'no-reply@example.com');
 
@@ -61,6 +61,7 @@ define('VIEWS_LAYOUTS', VIEWS.'layouts/');
 
 define('FUNCTIONS' , ROOT.'app/functions.php');
 define('APPLICATION_CONTROLLER', ROOT.'app/controllers/application.php');
+define('APPLICATION_HELPER', ROOT.'app/helpers/application.helper.php');
 
 define('DIR_HELPERS', ROOT.'app/helpers/');
 define('DIR_CONTROLLERS', ROOT.'app/controllers/');

@@ -2,32 +2,28 @@
 
 function smarty_function_get_errors($params, $template)
 {
-  $fields = array('email'           => 'Eposta', 
-                  'password'        => 'Şifre', 
-                  'password_retype' => 'Şifre Tekrar',
-                  'name'    => 'İsim',
-                  'lastname' => 'Soyisim',
-                  'mobilephone' => 'Cep Telefonu',
-                  'city_id' => 'Şehir',
-                  'district_id' => 'Semt',
-                  'address' => 'Adres',
-                  'cooking_cat_id' => 'Kategori',
-                  'cuisine_id' => 'Mutfak',
-                  'served_in' => 'Hazırlama Süresi',
-                  'unit_id' => 'Birim',
-                  'price' => 'Fiyat',
-                  'delivery_type' => 'Servis Biçimi'
-                  );
+	
+	if(!class_exists('ApplicationHelper'))
+	{
+		require_once APPLICATION_HELPER;
+	}
+	
+	$fileds = ApplicationHelper::returnFieldNames();
+	
+	if(!is_array($fields))
+	{
+		$fields = array();
+	}
   
-  $errors = array('notblank'  => 'alanını doldurun.'
-                 ,'notnull'   => 'alanını doldurun.'
-                 ,'regexp'    => 'geçerli değil.'
-                 ,'minlength' => 'çok kısa.'
-                 ,'unique'    => 'başka biri tarafından alınmış.'
-                 ,'email'     => 'geçersiz.'
-                 ,'type'      => 'geçersiz.'
-                 ,'wrong'     => 'uyuşmuyor'
-                 ,'length'    => 'fazla uzun.'
+  $errors = array('notblank'  => 'should not be empty.'
+                 ,'notnull'   => 'should be filled.'
+                 ,'regexp'    => 'is not valid.'
+                 ,'minlength' => 'is too short.'
+                 ,'unique'    => 'is taken by someone else.'
+                 ,'email'     => 'is invalid.'
+                 ,'type'      => 'is invalid.'
+                 ,'wrong'     => 'does not match'
+                 ,'length'    => 'is too long.'
                  );
   
   $error_stack = $template->getTemplateVars('error');
@@ -51,12 +47,12 @@ function smarty_function_get_errors($params, $template)
   
 
   echo '<div class="error">';
-  echo $error_count.' hata oluştu';
+  echo $error_count.' error(s) occured';
   echo '<ul>';
   foreach($error_array as $k => $v)
   {                  
     $f = ($fields[$k]) ? $fields[$k] : $k;
-    echo '<li>'.$f.' '.$errors[$v[0]].'</li>';
+    echo '<li>'.ucwords($f).' '.$errors[$v[0]].'</li>';
   }
   echo '</ul></div>';
 

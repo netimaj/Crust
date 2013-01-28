@@ -38,6 +38,7 @@ abstract class ApplicationController extends t_smarty
 
     public function __destruct()
     {
+    	
     	if(defined('404'))
 			{
 				header('HTTP/1.0 404 Not Found');
@@ -72,12 +73,12 @@ abstract class ApplicationController extends t_smarty
         return false;
 
         if(!class_exists($model_name))
-            _debug('Model bulunamadı', $model_name);
+            _debug('Model file not found', $model_name);
 
         $model = new $model_name();
 
         if(!method_exists($model, $function_name))
-            _debug('Model metodu bulunamadı', $model_name.'::'.$function_name);
+            _debug('Model method not found', $model_name.'::'.$function_name);
 
         // İşlemi gerçekleştiriyoruz
 
