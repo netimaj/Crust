@@ -8,7 +8,7 @@ function smarty_function_get_errors($params, $template)
 		require_once APPLICATION_HELPER;
 	}
 	
-	$fileds = ApplicationHelper::returnFieldNames();
+	$fields = ApplicationHelper::returnFieldNames();
 	
 	if(!is_array($fields))
 	{

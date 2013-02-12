@@ -24,9 +24,10 @@ function smarty_function_input($params, &$smarty)
   
   if($params['type'] == 'checkbox' and $value == 'on')
     $html .= 'checked="checked"';
-  
-  if($value) $html .= ' value="'.$value.'"';
-  
+
+	if($value)
+		$html .= ' value="'.htmlspecialchars($value).'"';
+
   if($params['readonly']) $html .= ' readonly="readonly"';
   if($params['disabled']) $html .= ' readonly="disabled"';
   if($params['title'])    $html .= ' title="'.$params['title'].'"';

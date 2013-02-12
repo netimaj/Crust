@@ -30,11 +30,12 @@ abstract class ApplicationController extends t_smarty
         // Helper for this CLASS
         $this->own_helper = load_helper('Application');
         // Helper for the current controller
-        $this->helper     = load_helper(ucwords($controller));     				
+        $this->helper     = load_helper(ucwords($controller), $this);     				
         
         $this->Layout('default');
         $this->assign('controller', $controller);
-    }  
+    }
+
 
     public function __destruct()
     {
@@ -96,7 +97,19 @@ abstract class ApplicationController extends t_smarty
                 $this->assign('success', true);
     }
 		
-		
+		/**
+		 * Search for the given index for a parameter, if not found redirect back to homepage
+		 * Can be used for pages that requires a DB table row id for a task 
+		 * 
+		 * Usage: $id = $this->request_id_in_parameter(0, true);
+		 * 
+		 * Also can be used for non-numeric values (can be handy for nosql databases that employ string keys)
+		 * Usage: $string_key = $this->request_id_in_parameter(0, false);
+		 * 
+		 * @param mixed $parameter_key
+		 * @param boolean $not_numeric
+		 * @return mixed parameter content 
+		 */
 		public function require_id_in_parameter($parameter_key=0, $not_numeric=false)
 		{
 			if(!isset($this->parameters[$parameter_key]) or empty($this->parameters[$parameter_key]))
@@ -107,5 +120,15 @@ abstract class ApplicationController extends t_smarty
 			
 			return $this->parameters[$parameter_key];
 		}		
+		
+		/**
+		 * Assigns title in smarty to be inserted between <title> </title> tags
+		 * 
+		 * @param string $title
+		 */
+		public function set_title($title)
+		{
+			$this->assign('title', $title);
+		}  		
 }
 ?>

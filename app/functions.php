@@ -3,7 +3,6 @@
 function _404()
 {
 	define('404', true);
-  require ROOT.'public/404.php'; 
   exit;
 }
 
@@ -16,7 +15,6 @@ function _debug($message, $param)
 function _500()
 {
 	define('500', true);
-  require ROOT.'public/500.php';
   exit;
 }
 
@@ -32,7 +30,7 @@ function redirect_to($request, $to_referer=false)
   exit;
 }
 
-function load_helper($helper_name)
+function load_helper($helper_name, $instance=null)
 {
   $file_name = DIR_HELPERS.strtolower($helper_name).'.helper.php';    
   if(!file_exists($file_name))
@@ -44,7 +42,7 @@ function load_helper($helper_name)
   if(!class_exists($class_name))
     return null;
   
-  return new $class_name();
+  return (is_null($instance)) ? new $class_name() : new $class_name($instance);
 }
 
 function call_controller($name, $action, $parameters)

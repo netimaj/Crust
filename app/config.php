@@ -20,11 +20,14 @@ define('MAIL_SENDER', 'no-reply@example.com');
 define('ENVIRONMENT', 'development');
 #define('ENVIRONMENT', 'production');
 #define('ENVIRONMENT', 'local');
- 
+
+/**
+ * Configure here!!
+ */
 if(ENVIRONMENT == 'development')
 {
   define('SUB_FOLDER'     , '/framework/');
-  define('ROOT'           , $_SERVER['DOCUMENT_ROOT'].'/');
+  define('ROOT'           , $_SERVER['DOCUMENT_ROOT'].'/'.SUB_FOLDER);
   define('URL'            , 'http://localhost/framework/');
   define('NOCACHE'        , true);      
   define('DB_DSN'         , 'mysql:dbname=framework;host=127.0.0.1');
